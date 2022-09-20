@@ -16,7 +16,7 @@ Qnet_Gates(Qabs  = 500,
            Qmet  = 10, 
            Qevap = 5)
 
-## ---- fig.height = 4, fig.width = 8-------------------------------------------
+## ---- fig.height = 4, fig.width = 6-------------------------------------------
 
 plot(x    = seq(100, 1000, 100), 
      y    = Qradiation_absorbed(a       = 0.9, 
@@ -69,7 +69,7 @@ legend(x      = "topleft",
        lty    = c("solid", "dashed", "dotted", "dotdash"))
 
 
-## ---- fig.height = 4, fig.width = 8-------------------------------------------
+## ---- fig.height = 4, fig.width = 6-------------------------------------------
 
 plot(x    = 293:313, 
      y    = Qemitted_thermal_radiation(epsilon  = 0.96, 
@@ -126,7 +126,7 @@ legend(x      = "topleft",
        lty    = c("solid", "dashed", "dotted", "dotdash"))
 
 
-## ---- fig.height = 4, fig.width = 8-------------------------------------------
+## ---- fig.height = 4, fig.width = 6-------------------------------------------
 
 plot(x    = 293:313, 
      y    = Qconvection(T_a        = 303,
@@ -171,7 +171,7 @@ legend(x      = "topleft",
        lty    = c("solid", "dashed", "dotted", "dotdash"))
 
 
-## ---- fig.height = 4, fig.width = 8-------------------------------------------
+## ---- fig.height = 4, fig.width = 6-------------------------------------------
 
 plot(x    = 1:30, 
      y    = Nusselt_number(H_L = 1:30, 
@@ -208,7 +208,7 @@ legend(x      = "topleft",
        lty    = c("solid", "dashed", "dotted", "dotdash"))
 
 
-## ---- fig.height = 4, fig.width = 8-------------------------------------------
+## ---- fig.height = 4, fig.width = 6-------------------------------------------
 
 plot(x    = 1:30, 
      y    = Prandtl_number(c_p = 1:30,
@@ -245,7 +245,7 @@ legend(x      = "topleft",
        lty    = c("solid", "dashed", "dotted", "dotdash"))
 
 
-## ---- fig.height = 4, fig.width = 8-------------------------------------------
+## ---- fig.height = 4, fig.width = 6-------------------------------------------
 
 plot(x    = seq(0, 5, 0.2), 
      y    = Reynolds_number(u  = seq(0, 5, 0.2), 
@@ -283,7 +283,7 @@ legend(x      = "topleft",
 
 
 
-## ---- fig.height = 4, fig.width = 8-------------------------------------------
+## ---- fig.height = 4, fig.width = 6-------------------------------------------
 
 plot(x    = seq(0, 0.01, 0.001), 
      y    = Grashof_number(T_a = 30, 
@@ -327,7 +327,7 @@ legend(x      = "topleft",
        lty    = c("solid", "dashed", "dotted", "dotdash"))
 
 
-## ---- fig.height = 4, fig.width = 8-------------------------------------------
+## ---- fig.height = 4, fig.width = 6-------------------------------------------
 
 plot(x    = 1:10, 
      y    = Nusselt_from_Reynolds(Re    = 1:10,  
@@ -406,7 +406,7 @@ free_or_forced_convection(Gr = 100,
                           Re = 5)
 
 
-## ---- fig.height = 4, fig.width = 8-------------------------------------------
+## ---- fig.height = 4, fig.width = 6-------------------------------------------
 
 oldpar <- par()
 
@@ -482,7 +482,7 @@ legend(x      = "bottomright",
        lty    = c("solid", "dashed", "dotted", "dotdash", "dotdash", "dotdash", "dotdash", "longdash", "twodash"))
 
 
-## ---- fig.height = 4, fig.width = 8-------------------------------------------
+## ---- fig.height = 3, fig.width = 6-------------------------------------------
 
 par(mar = c(5,  5, 3, 2))
 
@@ -538,7 +538,7 @@ legend(x      = "bottomright",
        lty    = c("solid", "dashed", "dotted", "dotdash", "longdash"))
 
 
-## ---- fig.height = 4, fig.width = 6-------------------------------------------
+## ---- fig.height = 3, fig.width = 5-------------------------------------------
 
 plot(x    = seq(0, 3, 0.25), 
      y    = heat_transfer_coefficient_simple(V    = seq(0, 3, 0.25),
@@ -568,7 +568,7 @@ legend(x      = "bottomright",
        lty    = c("dashed", "solid", "dotted"))
 
 
-## ---- fig.height = 4, fig.width = 8-------------------------------------------
+## ---- fig.height = 4, fig.width = 6-------------------------------------------
 
 plot(x    = 293:313, 
      y    = Qconduction_animal(T_g        = 293:313,
@@ -616,7 +616,7 @@ legend(x      = "topright",
        lty    = c("solid", "dashed", "dotted", "dotdash"))
 
 
-## ---- fig.height = 4, fig.width = 8-------------------------------------------
+## ---- fig.height = 4, fig.width = 6-------------------------------------------
 
 plot(x    = 293:313, 
      y    = Qconduction_substrate(T_g        = 293:313,
@@ -665,7 +665,7 @@ legend(x      = "topright",
        lty    = c("solid", "dashed", "dotted", "dotdash"))
 
 
-## ---- fig.height = 4, fig.width = 6-------------------------------------------
+## ---- fig.height = 4, fig.width = 4-------------------------------------------
 
 plot(x    = 1:100, 
      y    = Qmetabolism_from_mass(m     = 1:100,
@@ -694,7 +694,7 @@ legend(x      = "topleft",
        lty    = c("solid", "dashed", "dotted"))
 
 
-## ---- fig.height = 4, fig.width = 6-------------------------------------------
+## ---- fig.height = 4, fig.width = 4-------------------------------------------
 
 plot(x    = 1:100, 
      y    = Qmetabolism_from_mass_temp(m     = 1:100, 
@@ -767,7 +767,7 @@ legend(x      = "topleft",
        lty    = c("solid", "dotted", "dotdash", "twodash"))
 
 
-## ---- fig.height = 4, fig.width = 6-------------------------------------------
+## ---- fig.height = 4, fig.width = 4-------------------------------------------
 
 # kPa
 
@@ -838,7 +838,7 @@ legend(x      = "right",
        lty    = c("dashed", "dotted", "solid"))
 
 
-## ---- fig.height = 4, fig.width = 6-------------------------------------------
+## ---- fig.height = 3, fig.width = 4-------------------------------------------
 
 par(mar = c(5, 5, 3, 2))
 
@@ -849,7 +849,7 @@ plot(x    = 10:30,
      ylab = expression("external resistance, " ~ r[e] ~ (sm^{-1})))
 
 
-## ---- fig.height = 4, fig.width = 6-------------------------------------------
+## ---- fig.height = 3, fig.width = 4-------------------------------------------
 
 plot(x    = 10:30, 
      y    = saturation_water_vapor_pressure(T_a = 10:30), 
@@ -858,7 +858,7 @@ plot(x    = 10:30,
      ylab = "saturation water vapor pressure (Pa)")
 
 
-## ---- fig.height = 4, fig.width = 6-------------------------------------------
+## ---- fig.height = 4, fig.width = 4-------------------------------------------
 
 t.seq <- lapply(293:313, 
                 FUN     = Tb_Gates, 
@@ -933,7 +933,7 @@ legend(x      = "bottomright",
        lty    = c("dashed", "solid", "dotted"))
 
 
-## ---- fig.height = 4, fig.width = 6-------------------------------------------
+## ---- fig.height = 4, fig.width = 4-------------------------------------------
 
 plot(x    = 293:313, 
      y    = Tb_CampbellNorman(T_a     = 293:313, 
@@ -987,7 +987,7 @@ legend(x      = "bottomright",
        lty    = c("dashed", "dotted", "solid"))
 
 
-## ---- fig.height = 4, fig.width = 8-------------------------------------------
+## ---- fig.height = 4, fig.width = 6-------------------------------------------
 
 # sun, surface
 
@@ -1102,13 +1102,13 @@ legend(x      = "bottomright",
          type = "l", 
          lty  = "dotdash")
 
-legend(x      = "bottomright",
+legend(x      = "topright",
        title  = "parameters", 
        legend = c("sun, surface", "shade, surface", "sun, above surface", "shade, above surface"), 
        lty    = c("solid", "dashed", "dotted", "dotdash"))
 
 
-## ---- fig.height = 4, fig.width = 6-------------------------------------------
+## ---- fig.height = 4, fig.width = 4-------------------------------------------
 
 t.seq <- lapply(293:313, 
                 FUN       = Tb_lizard_Fei,  
@@ -1166,7 +1166,7 @@ legend(x      = "bottomright",
        lty    = c("dashed", "solid", "dotted"))
 
 
-## ---- fig.height = 4, fig.width = 6-------------------------------------------
+## ---- fig.height = 4, fig.width = 4-------------------------------------------
 
 t.seq <- lapply(20:40, 
                 FUN    = Tb_butterfly,  
@@ -1233,7 +1233,7 @@ legend(x      = "bottomright",
        lty    = c("dashed", "solid", "dotted"))
 
 
-## ---- fig.height = 4, fig.width = 6-------------------------------------------
+## ---- fig.height = 4, fig.width = 4-------------------------------------------
 
 t.seq <- lapply(20:40, 
                 FUN       = Tb_grasshopper,  
@@ -1302,7 +1302,7 @@ legend(x      = "bottomright",
        lty    = c("dashed", "dotted", "solid"))
 
 
-## ---- fig.height = 4, fig.width = 6-------------------------------------------
+## ---- fig.height = 4, fig.width = 4-------------------------------------------
 
 t.seq <- lapply(20:40, 
                 FUN   = Tb_mussel,  
@@ -1370,7 +1370,7 @@ legend(x      = "bottomright",
        lty    = c("solid", "dashed", "dotted"))
 
 
-## ---- fig.height = 4, fig.width = 6-------------------------------------------
+## ---- fig.height = 4, fig.width = 4-------------------------------------------
 
 t.seq <- lapply(seq(0.02, 0.14, 0.01), 
                 FUN   = Tb_mussel,  
@@ -1451,7 +1451,7 @@ legend(x      = "bottomright",
        legend = c(0.5,1,3), 
        lty    = c("solid", "dashed", "dotted"))
 
-## ---- fig.height = 4, fig.width = 6-------------------------------------------
+## ---- fig.height = 4, fig.width = 4-------------------------------------------
 
 t.seq <- lapply(20:40,  
                 FUN  = Tbed_mussel,  
@@ -1518,7 +1518,7 @@ legend(x      = "bottomright",
        lty    = c("solid", "dashed", "dotted"))
 
 
-## ---- fig.height = 4, fig.width = 6-------------------------------------------
+## ---- fig.height = 4, fig.width = 4-------------------------------------------
 
 t.seq <- lapply(20:40,  
                 FUN      = Tb_limpet,  
@@ -1580,7 +1580,7 @@ legend(x      = "bottomright",
        lty    = c("solid", "dashed", "dotted"))
 
 
-## ---- fig.height = 4, fig.width = 6-------------------------------------------
+## ---- fig.height = 4, fig.width = 4-------------------------------------------
 
 t.seq <- lapply(20:40, 
                 FUN      = Tb_limpet,  
@@ -1640,7 +1640,7 @@ legend(x      = "bottomright",
        lty    = c("solid", "dashed", "dotted"))
 
 
-## ---- fig.height = 4, fig.width = 6-------------------------------------------
+## ---- fig.height = 4, fig.width = 4-------------------------------------------
 par(mar = c(5,  5, 3, 2))
 blr.seq= lapply(293:313, FUN=boundary_layer_resistance, e_s= 2.5, e_a = 2.3, elev = 500, D = 0.007, u = 2)
 plot(x    = 293:313, 
@@ -1649,7 +1649,7 @@ plot(x    = 293:313,
      xlab = "air temperature (K)", 
      ylab = expression("boundary layer resistance" ~ (s ~ cm^{-1})))
 
-## ---- fig.height = 4, fig.width = 8-------------------------------------------
+## ---- fig.height = 4, fig.width = 6-------------------------------------------
 
 plot(x    = 1:24, 
      y    = Tsoil(T_g_max = 30, 
@@ -1690,7 +1690,7 @@ legend(x      = "topleft",
        lty    = c("solid", "dashed", "dotted", "dotdash"))
 
 
-## ---- fig.height = 4, fig.width = 6-------------------------------------------
+## ---- fig.height = 4, fig.width = 4-------------------------------------------
 
 rad.seq <- sapply(20:40, 
                   FUN            = Qthermal_radiation_absorbed,  
@@ -1805,7 +1805,7 @@ legend(x      = "topleft",
   ts <- snoon + dayl / 2 
 
 
-## ---- fig.height = 4, fig.width = 8-------------------------------------------
+## ---- fig.height = 4, fig.width = 6-------------------------------------------
 
 psi_deg <- sapply(1:24, 
                   FUN = zenith_angle, 
@@ -2027,7 +2027,7 @@ for (hr in 1:24) {
 }
 
 
-## ---- fig.height = 4, fig.width = 8-------------------------------------------
+## ---- fig.height = 4, fig.width = 6-------------------------------------------
 
 par(mar = c(4, 4, 1, 4), 
     mgp = c(2, 1, 0), 
@@ -2173,7 +2173,7 @@ Qmet  <- 0
 Qevap <- 0
 
 
-## ---- fig.height = 4, fig.width = 8-------------------------------------------
+## ---- fig.height = 4, fig.width = 7-------------------------------------------
 
 Qnet <- Qnet_Gates(Qabs  = Qabs, 
                    Qemit = Qemit, 

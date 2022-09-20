@@ -2,8 +2,8 @@
 
 Version numbers follow [Semantic Versioning](https://semver.org/).
 
-# TrenchR 0.1.0
-*2022-07-07*
+# [TrenchR 0.1.1](https://github.com/trenchproject/TrenchR/releases/tag/v0.1.1)
+*2022-09-20*
 
 ## First release
 * Major edits and formats throughout the package
@@ -27,6 +27,8 @@ Version numbers follow [Semantic Versioning](https://semver.org/).
 
 ## Edits is response to CRAN review
 * including shortening title, editing description, and updating variable names.
+* change reference handling.
+* reduce figure size in vignettes to reduce size.
 
 ## Argument edits
 * Standardizing arguments across functions

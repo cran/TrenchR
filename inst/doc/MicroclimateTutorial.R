@@ -14,7 +14,7 @@ day_of_year(day    = "2017-04-22",
             format = "%Y-%m-%d")
 
 
-## ---- fig.height = 4, fig.width = 6-------------------------------------------
+## ---- fig.height = 3, fig.width = 4-------------------------------------------
 
 plot(x    = 1:365, 
      y    = dec_angle(1:365), 
@@ -23,7 +23,7 @@ plot(x    = 1:365,
      ylab = "declination angle (radian)")
 
 
-## ---- fig.height = 4, fig.width = 6-------------------------------------------
+## ---- fig.height = 3, fig.width = 6-------------------------------------------
 
 zenith <- zenith_angle(hour = 1:24, 
                        doy  = 200, 
@@ -69,7 +69,7 @@ legend(x      = "bottomleft",
        lty    = c("dotted", "dotdash", "solid", "dashed"))
 
 
-## ---- fig.height = 4, fig.width = 6-------------------------------------------
+## ---- fig.height = 3, fig.width = 6-------------------------------------------
 
 zenith <- zenith_angle(doy  = 1:365, 
                        hour = 12, 
@@ -112,13 +112,13 @@ points(x    = 1:365,
        type = "l", 
        lty  = "dashed")
 
-legend(x      = "top", 
+legend(x      = "topleft", 
        title  = "latitude (°)", 
        legend = c(0, 20, 40, 60), 
        lty    = c("dashed", "dotdash", "dotted", "solid"))
 
 
-## ---- fig.height = 4, fig.width = 6-------------------------------------------
+## ---- fig.height = 3, fig.width = 4-------------------------------------------
 
 plot(x    = 1:365, 
      y    = solar_noon(lon = 150, doy = 1:365), 
@@ -146,7 +146,7 @@ legend(x      = "topright",
        lty    = c("dashed", "solid", "dotted"))
 
 
-## ---- fig.height = 4, fig.width = 6-------------------------------------------
+## ---- fig.height = 3, fig.width = 6-------------------------------------------
 
 az <- unlist(lapply(5:18, 
                     FUN = azimuth_angle, 
@@ -193,13 +193,13 @@ points(x    = 5:18,
        type = "l",
        lty  = "dotdash")
 
-legend(x      = "top", 
+legend(x      = "topleft", 
        title  = "day of year", 
        legend = c(173, 228, 266, 356), 
        lty    = c("solid", "dotdash", "dotted", "dashed"))
 
 
-## ---- fig.height = 4, fig.width = 6-------------------------------------------
+## ---- fig.height = 3, fig.width = 4-------------------------------------------
 
 az <- unlist(lapply(1:365, 
                     FUN = azimuth_angle, 
@@ -241,7 +241,7 @@ legend(x      = "topright",
        lty    = c("dotted", "dashed", "solid"))
 
 
-## ---- fig.height = 4, fig.width = 6-------------------------------------------
+## ---- fig.height = 3, fig.width = 4-------------------------------------------
 
 plot(x    = 1:365,  
      y    = daylength(lat = 10, doy = 1:365), 
@@ -266,7 +266,7 @@ legend(x      = "topright",
        lty    = c("solid", "dashed", "dotted"))
 
 
-## ---- fig.height = 4, fig.width = 6-------------------------------------------
+## ---- fig.height = 3, fig.width = 4-------------------------------------------
 
 plot(x    = 1:4000, 
      y    = airpressure_from_elev(elev = 1:4000), 
@@ -275,7 +275,7 @@ plot(x    = 1:4000,
      ylab = "air pressure (kPa)")
 
 
-## ---- fig.height = 4, fig.width = 6-------------------------------------------
+## ---- fig.height = 3, fig.width = 6-------------------------------------------
 
 oldpar<-par()
 
@@ -323,7 +323,7 @@ legend(x      = "topright",
        lty    = c("solid", "dotted", "dashed"))
 
 
-## ---- fig.height = 4, fig.width = 6-------------------------------------------
+## ---- fig.height = 3, fig.width = 4-------------------------------------------
 
 par(mar = c(5, 5, 3, 2))
 
@@ -365,7 +365,7 @@ legend(x      = "topright",
        lty    = c("solid", "dotted", "dashed"))
 
 
-## ---- fig.height = 4, fig.width = 6-------------------------------------------
+## ---- fig.height = 3, fig.width = 6-------------------------------------------
 
 par(mar = c(5, 5, 3, 2))
 
@@ -404,7 +404,7 @@ legend(x      = "topright",
        lty    = c("solid", "dashed"))
 
 
-## ---- fig.height = 4, fig.width = 6-------------------------------------------
+## ---- fig.height = 3, fig.width = 4-------------------------------------------
 
 par(mar = c(5, 5, 3, 2))
 
@@ -426,7 +426,7 @@ plot(x    = seq(1, 365, 31),
      ylab = expression(radiation ~ (W/m^{2})))
 
 
-## ---- fig.height = 4, fig.width = 8-------------------------------------------
+## ---- fig.height = 3, fig.width = 6-------------------------------------------
 
 par(mar=c(5, 5, 3, 2))
 
@@ -515,7 +515,7 @@ legend(x      = "topright",
        lty    = c("solid", "dashed", "dotted", "dotdash", "longdash", "longdash", "twodash"))
 
 
-## ---- fig.height = 4, fig.width = 8-------------------------------------------
+## ---- fig.height = 3, fig.width = 6-------------------------------------------
 
 par(mar = c(5, 5, 3, 2))
 r.seq <- lapply(seq(20, 85), 
@@ -550,7 +550,7 @@ points(x    = seq(20,85),
        lty = "dotted")
 
 
-## ---- fig.height = 4, fig.width = 6-------------------------------------------
+## ---- fig.height = 3, fig.width = 4-------------------------------------------
 
 u_r <- c(0.01, 0.025, 0.05, 0.1, 0.2)
 zr  <- c(0.1, 0.25, 0.5, 0.75, 1)
@@ -559,7 +559,7 @@ surface_roughness(u_r = u_r,
                   zr  = zr)
 
 
-## ---- fig.height = 4, fig.width = 6-------------------------------------------
+## ---- fig.height = 3, fig.width = 4-------------------------------------------
 
 zs <- seq(0, 2, 0.1) 
 
@@ -596,7 +596,7 @@ legend(x      = "bottomright",
        lty    = c("dotted", "dashed", "solid"))
 
 
-## ---- fig.height = 4, fig.width = 6-------------------------------------------
+## ---- fig.height = 3, fig.width = 4-------------------------------------------
 
 z.seq <- seq(0, 2, by = 0.1)
 t.seq <- air_temp_profile_neutral(T_r = 20, 
@@ -638,7 +638,7 @@ legend(x      = "topright",
        lty    = c("solid", "dotted", "dashed"))
 
 
-## ---- fig.height = 4, fig.width = 6-------------------------------------------
+## ---- fig.height = 3, fig.width = 4-------------------------------------------
 
 z.seq <- seq(0, 2, by = 0.1)
 
@@ -685,7 +685,7 @@ legend(x      = "topright",
        lty    = c("solid", "dotted", "dashed"))
 
 
-## ---- fig.height = 4, fig.width = 6-------------------------------------------
+## ---- fig.height = 3, fig.width = 4-------------------------------------------
 
 z.seq <- seq(0, 2, by = 0.1)
 t.seq <- lapply(z.seq, 
@@ -706,7 +706,7 @@ points(x = c(27, 25, 22, 20),
        y = c(0, 0.05, 0.25, 0.5))
 
 
-## ---- fig.height = 4, fig.width = 6-------------------------------------------
+## ---- fig.height = 3, fig.width = 4-------------------------------------------
 
 z.seq <- seq(0, 2, by = 0.1)
 u.seq <- lapply(z.seq, 
@@ -726,7 +726,7 @@ points(x = c(0.01, 0.025, 0.05),
        y = c(0.05, 0.25, 0.5))
 
 
-## ---- fig.height = 4, fig.width = 6-------------------------------------------
+## ---- fig.height = 3, fig.width = 6-------------------------------------------
 
 plot(x    = 1:23, 
      y    = diurnal_temp_variation_sine(T_max = 30, T_min = 10, t=1:23), 
@@ -762,7 +762,7 @@ legend(x      = "topleft",
        lty    = c("solid", "dotted", "dashed"))
 
 
-## ---- fig.height = 4, fig.width = 6-------------------------------------------
+## ---- fig.height = 3, fig.width = 4-------------------------------------------
 
 par(mar=c(5, 5, 3, 2))
 
@@ -848,7 +848,7 @@ degree_days(T_min  = 7,
             method = "double.triangulation")
 
 
-## ---- fig.height = 4, fig.width = 6-------------------------------------------
+## ---- fig.height = 3, fig.width = 4-------------------------------------------
 
 temp_vector <- diurnal_temp_variation_sine(T_max = 20, 
                                            T_min = -10, 
@@ -958,7 +958,7 @@ legend(x      = "topright",
        lty    = c("dashed", "dotted", "dotdash"))
 
 
-## ---- fig.height = 4, fig.width = 6-------------------------------------------
+## ---- fig.height = 3, fig.width = 4-------------------------------------------
 
 plot(x    = seq(500,1700,100), 
      y    = soil_specific_heat(x_o    = 0.01, 
