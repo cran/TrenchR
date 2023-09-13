@@ -12,14 +12,14 @@ test_that("solar_radiation function works as expected", {
 })
 
 test_that("diurnal_radiation_variation function works as expected", {
-  expect_similar(diurnal_radiation_variation(doy=112, solrad=8000, hour=12, lon=-122.33, lat=47.61), 1006.89)
-  expect_similar(diurnal_radiation_variation(doy=112, solrad=1, hour=1, lon=-122.33, lat=47.61), 0)
+  expect_similar(diurnal_radiation_variation(doy=112, S=8000, hour=12, lon=-122.33, lat=47.61), 1006.89)
+  expect_similar(diurnal_radiation_variation(doy=112, S=1, hour=1, lon=-122.33, lat=47.61), 0)
 
 })
 
 test_that("monthly_solar_radiation function works as expected", {
-  expect_lt(monthly_solar_radiation(lat=47.61,lon=-122.33,doy=112,elev=1500,T_a=15,Hr=50,P=50),268.9506)
-  expect_gt(monthly_solar_radiation(lat=47.61,lon=-122.33,doy=112,elev=1500,T_a=15,Hr=50,P=50),165.1397)
+  expect_lt(monthly_solar_radiation(lat=47.61, lon=-122.33, doy=112, elev=1500, T_a=15, hp=50, P=50), 268.9506)
+  expect_gt(monthly_solar_radiation(lat=47.61, lon=-122.33, doy=112, elev=1500, T_a=15, hp=50, P=50), 165.1397)
 })
 
 test_that("direct_solar_radiation function works as expected", {

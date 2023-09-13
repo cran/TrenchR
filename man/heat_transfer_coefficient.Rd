@@ -4,10 +4,10 @@
 \alias{heat_transfer_coefficient}
 \title{Estimate the Heat Transfer Coefficient Empirically}
 \usage{
-heat_transfer_coefficient(V, D, K, nu, taxon = "cylinder")
+heat_transfer_coefficient(u, D, K, nu, taxon = "cylinder")
 }
 \arguments{
-\item{V}{\code{numeric} air velocity (\ifelse{html}{\out{m s<sup>-1</sup>}}{\eqn{m s^-1}{ASCII}}).}
+\item{u}{\code{numeric} air velocity (\ifelse{html}{\out{m s<sup>-1</sup>}}{\eqn{m s^-1}{ASCII}}).}
 
 \item{D}{\code{numeric} characteristic dimension (e.g., diameter or snout-vent length) (meters).}
 
@@ -26,7 +26,7 @@ heat_transfer_coefficient(V, D, K, nu, taxon = "cylinder")
 The function estimates the heat transfer coefficient for various taxa based on empirical measurements \insertCite{Mitchell1976}{TrenchR}.
 }
 \examples{
-  heat_transfer_coefficient(V     = 0.5,
+  heat_transfer_coefficient(u     = 0.5,
                             D     = 0.05,
                             K     = 25.7 * 10^(-3),
                             nu    = 15.3 * 10^(-6),
@@ -55,6 +55,7 @@ Other biophysical models:
 \code{\link{Qradiation_absorbed}()},
 \code{\link{Qthermal_radiation_absorbed}()},
 \code{\link{Reynolds_number}()},
+\code{\link{T_sky}()},
 \code{\link{Tb_CampbellNorman}()},
 \code{\link{Tb_Gates2}()},
 \code{\link{Tb_Gates}()},

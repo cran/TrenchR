@@ -26,11 +26,11 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 This tutorial covers approaches and functions for preparing environmental data for analyses such as examining organismal energy balances. 
-The tutorial first covers estimating the intensity and partitioning of solar radiation, including estimating solar angles and day length. 
+The tutorial first addresses estimating the intensity and partitioning of solar radiation, including estimating solar angles and day length. 
 We then turn to estimating temperature and wind speed profiles that can scale weather station data to the conditions experienced by organisms. 
 We review functions for modeling diurnal variation in temperature and solar radiation as well as heat accumulation (degree days). 
 The tutorial concludes with a microclimate model for estimating soil temperatures. 
-Additional resources are available in R packages including NicheMapR, microclima, and microclimc.
+Additional resources are available in R packages including NicheMapR, microclima, and microclimc. Functions are generally from Campbell and Norman [-@campbell2012introduction] unless other resources are specified. More detailed source information is available in each function.
 
 # Radiation
 
@@ -522,7 +522,7 @@ r.seq <- lapply(seq(1, 365, 31),
                 lon  = -116.22,
                 elev = 866,
                 T    = 20,
-                Hr   = 15,
+                hp   = 15,
                 P    = 15)
 
 r.seq <- unlist(r.seq)
@@ -641,7 +641,7 @@ par(mar = c(5, 5, 3, 2))
 r.seq <- lapply(seq(20, 85), 
                 FUN = proportion_diffuse_solar_radiation, 
                 p_a = 86.1, 
-                A   = 0.25)
+                rho = 0.25)
 
 plot(x    = seq(20,85), 
      y    = r.seq,
@@ -652,7 +652,7 @@ plot(x    = seq(20,85),
 r.seq <- lapply(seq(20, 85), 
                 FUN = proportion_diffuse_solar_radiation, 
                 p_a = 96.1, 
-                A   = 0.25)
+                rho = 0.25)
 
 points(x    = seq(20,85), 
        y    = r.seq, 
@@ -662,7 +662,7 @@ points(x    = seq(20,85),
 r.seq <- lapply(seq(20, 85), 
                 FUN = proportion_diffuse_solar_radiation, 
                 p_a = 76.1, 
-                A   = 0.25)
+                rho = 0.25)
 
 points(x    = seq(20,85), 
        y    = r.seq, 
@@ -673,7 +673,7 @@ points(x    = seq(20,85),
 
 # Temperature and wind speed profiles
 
-Temperatures and wind speeds, standardly collected at a height of 2 m, can differ dramatically from conditions near the ground where most organisms live. 
+Temperatures and wind speeds, standardly collected at a height of 1-2 m, can differ dramatically from conditions near the ground where most organisms live. 
 Turbulent airflow influenced by the ground surface roughness sets up temperature and wind speed profiles. 
 These profiles can be estimated to scale temperatures and wind speeds to organism height. 
 We scale across height by estimating a wind speed profile using the relationship: 
@@ -996,7 +996,7 @@ par(mar=c(5, 5, 3, 2))
 r.seq <- lapply(1:24, 
                 FUN = diurnal_radiation_variation, 
                 doy = 172, 
-                solrad = 8000, 
+                S = 8000, 
                 lon = -112.07, 
                 lat = 33.45)
 
@@ -1009,7 +1009,7 @@ plot(x    = 1:24,
 r.seq <- lapply(1:24, 
                 FUN    = diurnal_radiation_variation, 
                 doy    = 356, 
-                solrad = 4000, 
+                S      = 4000, 
                 lon    = -112.07, 
                 lat    = 33.45)
 
@@ -1021,7 +1021,7 @@ points(x    = 1:24,
 r.seq <- lapply(1:24, 
                 FUN    = diurnal_radiation_variation, 
                 doy    = 266, 
-                solrad = 6000, 
+                S      = 6000, 
                 lon    = -112.07, 
                 lat    = 33.45)
 
@@ -1033,7 +1033,7 @@ points(x    = 1:24,
 r.seq <- lapply(1:24, 
                 FUN    = diurnal_radiation_variation, 
                 doy    = 228, 
-                solrad = 6000, 
+                S      = 6000, 
                 lon    = -112.07, 
                 lat    = 33.45)
 
@@ -1057,7 +1057,7 @@ Degree days indicate the accumulated heat available for processes such as develo
 For the frequent application of estimating development, degree days are calculated within physiological bounds known as the lower and upper developmental temperatures, LDT and UDT, respectively.
 We provide four approaches for estimating degree days that differ in the complexity with which they aggregate heat: "single.sine", "double.sine", "single.triangulation" or "double.triangulation". 
 
-We implement the methods detailed here: <http://ipm.ucanr.edu/WEATHER/ddfigindex.html>.
+We implement the methods detailed here: <https://ipm.ucanr.edu/WEATHER/ddfigindex.html>.
 The methods account for whether the temperature time series is intercepted by the LDT and / or the UDT. 
 Briefly, we present the equations for each method for the case of the temperature time series being intercepted by the lower threshold. 
 For the single-sine method, degree days $D$ can be estimated as
@@ -1179,7 +1179,7 @@ time_vector <- rep(1:24, 4)
 solrad_vector <- unlist(lapply(1:24, 
                                FUN    = diurnal_radiation_variation,
                                doy    = 172, 
-                               solrad = 8000, 
+                               S = 8000, 
                                lon    = -112.07, 
                                lat    = 33.45))
 
@@ -1192,7 +1192,7 @@ params <- list(SSA        = 0.7,
                dz         = 0.05, 
                z_r        = 1.5, 
                z0         = 0.02, 
-               H          = solrad_vector, 
+               S          = solrad_vector, 
                T_a        = temp_vector, 
                u          = wind_speed_vector, 
                rho_a      = 1.177,
@@ -1218,7 +1218,7 @@ T_soil <- soil_temperature(z_r.intervals = 12,
                            z0            = 0.02, 
                            SSA           = 0.7, 
                            TimeIn        = time_vector, 
-                           H             = solrad_vector, 
+                           S             = solrad_vector, 
                            water_content = 0.2, 
                            air_pressure  = 85, 
                            rho_so        = 1620, 
@@ -1238,7 +1238,7 @@ T_soil <- soil_temperature(z_r.intervals = 12,
                            z0            = 0.02, 
                            SSA           = 0.7, 
                            TimeIn        = time_vector, 
-                           H             = solrad_vector, 
+                           S             = solrad_vector, 
                            water_content = 0.2, 
                            air_pressure  = 85, 
                            rho_so        = 1620, 
@@ -1258,7 +1258,7 @@ T_soil <- soil_temperature(z_r.intervals = 12,
                            z0            = 0.02, 
                            SSA           = 0.7, 
                            TimeIn        = time_vector, 
-                           H             = solrad_vector, 
+                           S             = solrad_vector, 
                            water_content = 0.2, 
                            air_pressure  = 85, 
                            rho_so        = 1620, 
@@ -1297,7 +1297,7 @@ plot(x    = seq(500,1700,100),
      xlab = expression("bulk density" ~ (kg/m^{3})), 
      ylab = expression("soil specific heat" ~ (J ~ kg^{-1} ~ K^{-1})))
 
-par(oldpar)
+suppressWarnings(par(oldpar))
 
 ```
 

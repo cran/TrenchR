@@ -166,7 +166,7 @@ plot(x    = seq(0.01, 0.05, 0.001),
 par(mar = c(5, 5, 2, 2))
 
 plot(x    = seq(0, 90, 10), 
-     y    = proportion_silhouette_area(z     = seq(0, 90, 10), 
+     y    = proportion_silhouette_area(psi   = seq(0, 90, 10), 
                                        taxon = "frog"), 
      type = "l", 
      xlab = "zenith angle (°)", 
@@ -174,7 +174,7 @@ plot(x    = seq(0, 90, 10),
      ylim = range(0, 0.5))
 
 points(x    = seq(0, 90, 10), 
-       y    = proportion_silhouette_area(z       = seq(0, 90, 10), 
+       y    = proportion_silhouette_area(psi     = seq(0, 90, 10), 
                                          taxon   = "lizard", 
                                          raz     = 0, 
                                          posture = "prostrate"), 
@@ -182,14 +182,14 @@ points(x    = seq(0, 90, 10),
        lty  = "dashed")
 
 points(x    = seq(0, 90, 10), 
-       y    = proportion_silhouette_area(z       = seq(0, 90, 10), 
+       y    = proportion_silhouette_area(psi     = seq(0, 90, 10), 
                                          taxon   = "lizard", 
                                          raz     = 0, 
                                          posture = "elevated"), 
        type = "l", 
        lty  = "dotted")
 points(x    = seq(0, 90, 10), 
-       y    = proportion_silhouette_area(z     = seq(0, 90, 10), 
+       y    = proportion_silhouette_area(psi   = seq(0, 90, 10), 
                                          taxon =  "grasshopper"), 
        type = "l", 
        lty  = "dotdash")
@@ -330,6 +330,6 @@ points(x    = 0:60,
        type = "l", 
        lty  = "dashed")
 
-par(oldpar)
+suppressWarnings(par(oldpar))
 
 

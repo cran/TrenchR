@@ -8,19 +8,22 @@ Qradiation_absorbed(
   a = 0.9,
   A,
   psa_dir,
+  psa_dif,
   psa_ref,
   S_dir,
   S_dif,
   S_ref = NA,
-  a_s = NA
+  rho = NA
 )
 }
 \arguments{
 \item{a}{\code{numeric} solar absorptivity of animal surface (proportion), default value is for reptiles (0-1).}
 
-\item{A}{\code{numeric} surface area ((\ifelse{html}{\out{m<sup>2</sup>}}{\eqn{m^2}{ASCII}}).}
+\item{A}{\code{numeric} surface area (\ifelse{html}{\out{m<sup>2</sup>}}{\eqn{m^2}{ASCII}}).}
 
-\item{psa_dir}{\code{numeric} proportion surface area exposed to solar radiation (0-1).}
+\item{psa_dir}{\code{numeric} proportion surface area exposed to direct solar radiation (0-1).}
+
+\item{psa_dif}{\code{numeric} proportion surface area exposed to diffuse solar radiation (0-1).}
 
 \item{psa_ref}{\code{numeric} proportion surface area exposed to reflected solar radiation (0-1).}
 
@@ -30,7 +33,7 @@ Qradiation_absorbed(
 
 \item{S_ref}{\code{numeric} reflected solar radiation (\ifelse{html}{\out{W m<sup>-2</sup>}}{\eqn{W m^-2}{ASCII}}), either provided or estimated if surface albedo is provided instead}
 
-\item{a_s}{\code{numeric} is surface albedo (proportion), optional (not used) if reflected radiation is provided. Values available in \insertCite{Gates1980}{TrenchR} Table 8.2.}
+\item{rho}{\code{numeric} is surface albedo (proportion), optional (not used) if reflected radiation is provided. Values available in \insertCite{Gates1980}{TrenchR} Table 8.2.}
 }
 \value{
 \code{numeric} solar radiation absorbed (W)
@@ -41,11 +44,12 @@ The function estimates solar and thermal radiation (W) absorbed by the surface o
 \examples{
   Qradiation_absorbed(a       = 0.9,
                       A       = 1,
-                      psa_dir = 0.4,
-                      psa_ref = 0.4,
+                      psa_dir = 0.5,
+                      psa_dif = 0.5,
+                      psa_ref = 0.5,
                       S_dir   = 1000,
                       S_dif   = 200,
-                      a_s     = 0.5)
+                      rho     = 0.5)
 
 }
 \references{
@@ -69,6 +73,7 @@ Other biophysical models:
 \code{\link{Qnet_Gates}()},
 \code{\link{Qthermal_radiation_absorbed}()},
 \code{\link{Reynolds_number}()},
+\code{\link{T_sky}()},
 \code{\link{Tb_CampbellNorman}()},
 \code{\link{Tb_Gates2}()},
 \code{\link{Tb_Gates}()},

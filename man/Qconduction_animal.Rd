@@ -7,9 +7,9 @@
 Qconduction_animal(T_g, T_b, d, K = 0.5, A, proportion)
 }
 \arguments{
-\item{T_g}{\code{numeric} ground surface temperature (Kelvin).}
+\item{T_g}{\code{numeric} ground surface temperature (K).}
 
-\item{T_b}{\code{numeric} body temperature (Kelvin).}
+\item{T_b}{\code{numeric} body temperature (K).}
 
 \item{d}{\code{numeric} mean thickness of the animal skin (surface) in (meters). The function assumes a well mixed interior.}
 
@@ -55,6 +55,7 @@ Other biophysical models:
 \code{\link{Qradiation_absorbed}()},
 \code{\link{Qthermal_radiation_absorbed}()},
 \code{\link{Reynolds_number}()},
+\code{\link{T_sky}()},
 \code{\link{Tb_CampbellNorman}()},
 \code{\link{Tb_Gates2}()},
 \code{\link{Tb_Gates}()},

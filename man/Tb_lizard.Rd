@@ -11,13 +11,13 @@ Tb_lizard(
   svl,
   m,
   psi,
-  rho_S,
+  rho_s,
   elev,
   doy,
   sun = TRUE,
   surface = TRUE,
-  alpha_S = 0.9,
-  alpha_L = 0.965,
+  a_s = 0.9,
+  a_l = 0.965,
   epsilon_s = 0.965,
   F_d = 0.8,
   F_r = 0.5,
@@ -38,7 +38,7 @@ Tb_lizard(
 
 \item{psi}{\code{numeric} solar zenith angle (degrees).}
 
-\item{rho_S}{\code{numeric} surface albedo (proportion). ~ 0.25 for grass, ~ 0.1 for dark soil, > 0.75 for fresh snow \insertCite{Campbell1998}{TrenchR}.}
+\item{rho_s}{\code{numeric} surface albedo (proportion). ~ 0.25 for grass, ~ 0.1 for dark soil, > 0.75 for fresh snow \insertCite{Campbell1998}{TrenchR}.}
 
 \item{elev}{\code{numeric} elevation (m).}
 
@@ -48,9 +48,9 @@ Tb_lizard(
 
 \item{surface}{\code{logical} indicates whether lizard is on ground surface (\code{TRUE}) or above the surface (\code{FALSE}, e.g. in a tree).}
 
-\item{alpha_S}{\code{numeric} lizard solar absorptivity (proportion), \code{alpha_S = 0.9} \insertCite{Gates1980}{TrenchR} (Table 11.4).}
+\item{a_s}{\code{numeric} lizard solar absorptivity (proportion), \code{a_s = 0.9} \insertCite{Gates1980}{TrenchR} (Table 11.4).}
 
-\item{alpha_L}{\code{numeric} lizard thermal absorptivity (proportion), \code{alpha_L = 0.965} \insertCite{Bartlett1967}{TrenchR}.}
+\item{a_l}{\code{numeric} lizard thermal absorptivity (proportion), \code{a_l = 0.965} \insertCite{Bartlett1967}{TrenchR}.}
 
 \item{epsilon_s}{\code{numeric} surface emissivity of lizards (proportion), \code{epsilon_s = 0.965} \insertCite{Bartlett1967}{TrenchR}.}
 
@@ -80,13 +80,13 @@ The proportion of radiation that is direct is determined following \insertCite{S
             svl       = 60, 
             m         = 10, 
             psi       = 34, 
-            rho_S     = 0.24, 
+            rho_s     = 0.24, 
             elev      = 500, 
             doy       = 200, 
             sun       = TRUE, 
             surface   = TRUE, 
-            alpha_S   = 0.9, 
-            alpha_L   = 0.965, 
+            a_s   = 0.9, 
+            a_l   = 0.965, 
             epsilon_s = 0.965, 
             F_d       = 0.8, 
             F_r       = 0.5, 
@@ -116,6 +116,7 @@ Other biophysical models:
 \code{\link{Qradiation_absorbed}()},
 \code{\link{Qthermal_radiation_absorbed}()},
 \code{\link{Reynolds_number}()},
+\code{\link{T_sky}()},
 \code{\link{Tb_CampbellNorman}()},
 \code{\link{Tb_Gates2}()},
 \code{\link{Tb_Gates}()},

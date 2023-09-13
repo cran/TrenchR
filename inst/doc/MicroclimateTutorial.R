@@ -414,7 +414,7 @@ r.seq <- lapply(seq(1, 365, 31),
                 lon  = -116.22,
                 elev = 866,
                 T    = 20,
-                Hr   = 15,
+                hp   = 15,
                 P    = 15)
 
 r.seq <- unlist(r.seq)
@@ -521,7 +521,7 @@ par(mar = c(5, 5, 3, 2))
 r.seq <- lapply(seq(20, 85), 
                 FUN = proportion_diffuse_solar_radiation, 
                 p_a = 86.1, 
-                A   = 0.25)
+                rho = 0.25)
 
 plot(x    = seq(20,85), 
      y    = r.seq,
@@ -532,7 +532,7 @@ plot(x    = seq(20,85),
 r.seq <- lapply(seq(20, 85), 
                 FUN = proportion_diffuse_solar_radiation, 
                 p_a = 96.1, 
-                A   = 0.25)
+                rho = 0.25)
 
 points(x    = seq(20,85), 
        y    = r.seq, 
@@ -542,7 +542,7 @@ points(x    = seq(20,85),
 r.seq <- lapply(seq(20, 85), 
                 FUN = proportion_diffuse_solar_radiation, 
                 p_a = 76.1, 
-                A   = 0.25)
+                rho = 0.25)
 
 points(x    = seq(20,85), 
        y    = r.seq, 
@@ -769,7 +769,7 @@ par(mar=c(5, 5, 3, 2))
 r.seq <- lapply(1:24, 
                 FUN = diurnal_radiation_variation, 
                 doy = 172, 
-                solrad = 8000, 
+                S = 8000, 
                 lon = -112.07, 
                 lat = 33.45)
 
@@ -782,7 +782,7 @@ plot(x    = 1:24,
 r.seq <- lapply(1:24, 
                 FUN    = diurnal_radiation_variation, 
                 doy    = 356, 
-                solrad = 4000, 
+                S      = 4000, 
                 lon    = -112.07, 
                 lat    = 33.45)
 
@@ -794,7 +794,7 @@ points(x    = 1:24,
 r.seq <- lapply(1:24, 
                 FUN    = diurnal_radiation_variation, 
                 doy    = 266, 
-                solrad = 6000, 
+                S      = 6000, 
                 lon    = -112.07, 
                 lat    = 33.45)
 
@@ -806,7 +806,7 @@ points(x    = 1:24,
 r.seq <- lapply(1:24, 
                 FUN    = diurnal_radiation_variation, 
                 doy    = 228, 
-                solrad = 6000, 
+                S      = 6000, 
                 lon    = -112.07, 
                 lat    = 33.45)
 
@@ -862,7 +862,7 @@ time_vector <- rep(1:24, 4)
 solrad_vector <- unlist(lapply(1:24, 
                                FUN    = diurnal_radiation_variation,
                                doy    = 172, 
-                               solrad = 8000, 
+                               S = 8000, 
                                lon    = -112.07, 
                                lat    = 33.45))
 
@@ -875,7 +875,7 @@ params <- list(SSA        = 0.7,
                dz         = 0.05, 
                z_r        = 1.5, 
                z0         = 0.02, 
-               H          = solrad_vector, 
+               S          = solrad_vector, 
                T_a        = temp_vector, 
                u          = wind_speed_vector, 
                rho_a      = 1.177,
@@ -901,7 +901,7 @@ T_soil <- soil_temperature(z_r.intervals = 12,
                            z0            = 0.02, 
                            SSA           = 0.7, 
                            TimeIn        = time_vector, 
-                           H             = solrad_vector, 
+                           S             = solrad_vector, 
                            water_content = 0.2, 
                            air_pressure  = 85, 
                            rho_so        = 1620, 
@@ -921,7 +921,7 @@ T_soil <- soil_temperature(z_r.intervals = 12,
                            z0            = 0.02, 
                            SSA           = 0.7, 
                            TimeIn        = time_vector, 
-                           H             = solrad_vector, 
+                           S             = solrad_vector, 
                            water_content = 0.2, 
                            air_pressure  = 85, 
                            rho_so        = 1620, 
@@ -941,7 +941,7 @@ T_soil <- soil_temperature(z_r.intervals = 12,
                            z0            = 0.02, 
                            SSA           = 0.7, 
                            TimeIn        = time_vector, 
-                           H             = solrad_vector, 
+                           S             = solrad_vector, 
                            water_content = 0.2, 
                            air_pressure  = 85, 
                            rho_so        = 1620, 
@@ -969,7 +969,7 @@ plot(x    = seq(500,1700,100),
      xlab = expression("bulk density" ~ (kg/m^{3})), 
      ylab = expression("soil specific heat" ~ (J ~ kg^{-1} ~ K^{-1})))
 
-par(oldpar)
+suppressWarnings(par(oldpar))
 
 
 ## -----------------------------------------------------------------------------

@@ -5,7 +5,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 # Load TrenchR package
 
-  library(TrenchR)
+ library(TrenchR)
 
 
 ## -----------------------------------------------------------------------------
@@ -22,10 +22,11 @@ plot(x    = seq(100, 1000, 100),
      y    = Qradiation_absorbed(a       = 0.9, 
                                 A       = 1, 
                                 psa_dir = 0.4, 
+                                psa_dif = 0.4,
                                 psa_ref = 0.4, 
                                 S_dir   = seq(100, 1000, 100), 
                                 S_dif   = 200, 
-                                a_s     = 0.5), 
+                                rho     = 0.5), 
      type = "l", 
      xlab = expression("direct solar radiation" ~ (W/m^{2})), 
      ylab = "solar radiation absorbed (W)")
@@ -34,10 +35,11 @@ points(x    = seq(100, 1000, 100),
        y    = Qradiation_absorbed(a       = 0.9, 
                                   A       = 1, 
                                   psa_dir = 0.2, 
+                                  psa_dif = 0.4,
                                   psa_ref = 0.4, 
                                   S_dir   = seq(100, 1000, 100), 
                                   S_dif   = 200, 
-                                  a_s     = 0.5), 
+                                  rho     = 0.5), 
        type = "l", 
        lty  = "dashed")
 
@@ -45,10 +47,11 @@ points(x    = seq(100, 1000, 100),
        y    = Qradiation_absorbed(a       = 0.45, 
                                   A       = 1, 
                                   psa_dir = 0.4, 
+                                  psa_dif = 0.4,
                                   psa_ref = 0.4, 
                                   S_dir   = seq(100, 1000, 100), 
                                   S_dif   = 200, 
-                                  a_s     = 0.5), 
+                                  rho     = 0.5), 
        type = "l", 
        lty  = "dotted")
 
@@ -56,18 +59,22 @@ points(x    = seq(100, 1000, 100),
        y    = Qradiation_absorbed(a       = 0.9, 
                                   A = 1, 
                                   psa_dir = 0.4, 
+                                  psa_dif = 0.4,
                                   psa_ref = 0.4, 
                                   S_dir = seq(100, 1000, 100), 
                                   S_dif = 200, 
-                                  a_s = 0.2), 
+                                  rho = 0.2), 
        type = "l", 
        lty  = "dotdash")
 
 legend(x      = "topleft", 
        title  = "parameters", 
-       legend = c("a = 0.9, psa_dir = 0.4, a_s = 0.5", "a = 0.9, sa_dir = 0.2, a_s = 0.5", "a = 0.45, psa_dir = 0.4, a_s = 0.5", "a = 0.9, psa_dir = 0.4, a_s = 0.2"), 
+       legend = c("a = 0.9, psa_dir = 0.4, rho = 0.5", "a = 0.9, sa_dir = 0.2, rho = 0.5", "a = 0.45, psa_dir = 0.4, rho = 0.5", "a = 0.9, psa_dir = 0.4, rho = 0.2"), 
        lty    = c("solid", "dashed", "dotted", "dotdash"))
 
+
+## -----------------------------------------------------------------------------
+T_sky(T_a=293, formula="Swinbank")
 
 ## ---- fig.height = 4, fig.width = 6-------------------------------------------
 
@@ -75,7 +82,7 @@ plot(x    = 293:313,
      y    = Qemitted_thermal_radiation(epsilon  = 0.96, 
                                        A        = 1, 
                                        psa_dir  = 0.4, 
-                                       psa_ref  = 0.6,  
+                                       psa_ref  = 0.5,  
                                        T_b      = 293:313,  
                                        T_g      = 293,  
                                        T_a      = 298,  
@@ -83,36 +90,33 @@ plot(x    = 293:313,
      type = "l", 
      xlab = "body surface temperature, Tb (K)", 
      ylab = "emitted thermal radiation, Qemit (W)")
-
 points(x    = 293:313, 
        y    = Qemitted_thermal_radiation(epsilon  = 0.96, 
                                          A        = 1, 
                                          psa_dir  = 0.2, 
-                                         psa_ref  = 0.8, 
+                                         psa_ref  = 0.5, 
                                          T_b      = 293:313, 
                                          T_g      = 293, 
                                          T_a      = 298, 
                                          enclosed = TRUE), 
        type = "l", 
        lty  = "dashed")
-
 points(x    = 293:313, 
        y    = Qemitted_thermal_radiation(epsilon  = 0.96,
                                          A        = 1,
                                          psa_dir  = 0.4, 
-                                         psa_ref  = 0.8, 
+                                         psa_ref  = 0.5, 
                                          T_b      = 293:313, 
                                          T_g      = 283, 
                                          T_a      = 298, 
                                          enclosed = FALSE), 
        type = "l", 
        lty  = "dotted")
-
 points(x    = 293:313, 
        y    = Qemitted_thermal_radiation(epsilon= 0.96, 
                                          A = 1, 
                                          psa_dir = 0.2, 
-                                         psa_ref = 0.6, 
+                                         psa_ref = 0.5, 
                                          T_b      = 293:313, 
                                          T_g      = 283, 
                                          T_a      = 298, 
@@ -137,7 +141,6 @@ plot(x    = 293:313,
      type = "l", 
      xlab = "ground temperature (K)", 
      ylab = "Q convection (W)")
-
 points(x    = 293:313, 
        y    = Qconvection(T_a        = 303,
                           T_b        = 293:313,
@@ -146,7 +149,6 @@ points(x    = 293:313,
                           proportion = 0.6), 
        type = "l",
        lty  = "dashed")
-
 points(x    = 293:313, 
        y    = Qconvection(T_a        = 303,
                           T_b        = 293:313,
@@ -155,7 +157,6 @@ points(x    = 293:313,
                           proportion = 0.3), 
        type = "l",
        lty  = "dotted")
-
 points(x    = 293:313, 
        y    = Qconvection(T_a        = 303,
                           T_b        = 293:313,
@@ -413,7 +414,7 @@ oldpar <- par()
 par(mar = c(5,  5, 3, 2))
 
 plot(x    = seq(0, 3, 0.25), 
-     y    = heat_transfer_coefficient(V     = seq(0, 3, 0.25),
+     y    = heat_transfer_coefficient(u     = seq(0, 3, 0.25),
                                       D     = 0.05,
                                       K     =  25.7 * 10^(-3),
                                       nu    =  15.3 * 10^(-6), 
@@ -423,7 +424,7 @@ plot(x    = seq(0, 3, 0.25),
      ylab = expression("heat transfer coefficient," ~ H[L] ~ (W ~ m^{-2} ~ K^{-1})))
 
 points(x    = seq(0, 3, 0.25), 
-       y    = heat_transfer_coefficient(V     = seq(0, 3, 0.25),
+       y    = heat_transfer_coefficient(u     = seq(0, 3, 0.25),
                                         D     = 0.05,
                                         K     =  25.7 * 10^(-3),
                                         nu    =  15.3 * 10^(-6), 
@@ -432,7 +433,7 @@ points(x    = seq(0, 3, 0.25),
        lty  = "dashed")
 
 points(x    = seq(0, 3, 0.25), 
-       y    = heat_transfer_coefficient(V     = seq(0, 3, 0.25),
+       y    = heat_transfer_coefficient(u     = seq(0, 3, 0.25),
                                         D     = 0.05,
                                         K     =  25.7 * 10^(-3),
                                         nu    =  15.3 * 10^(-6), 
@@ -441,7 +442,7 @@ points(x    = seq(0, 3, 0.25),
        lty  = "dotted")
 
 points(x    = seq(0, 3, 0.25), 
-       y    = heat_transfer_coefficient(V     = seq(0, 3, 0.25),
+       y    = heat_transfer_coefficient(u     = seq(0, 3, 0.25),
                                         D     = 0.05,
                                         K     =  25.7 * 10^(-3),
                                         nu    =  15.3 * 10^(-6), 
@@ -450,7 +451,7 @@ points(x    = seq(0, 3, 0.25),
        lty  = "dotdash")
 
 points(x    = seq(0, 3, 0.25), 
-       y    = heat_transfer_coefficient(V     = seq(0, 3, 0.25),
+       y    = heat_transfer_coefficient(u     = seq(0, 3, 0.25),
                                         D     = 0.05,
                                         K     =  25.7 * 10^(-3),
                                         nu    =  15.3 * 10^(-6), 
@@ -459,7 +460,7 @@ points(x    = seq(0, 3, 0.25),
        lty  = "dotdash")
 
 points(x    = seq(0, 3, 0.25), 
-       y    = heat_transfer_coefficient(V     = seq(0, 3, 0.25),
+       y    = heat_transfer_coefficient(u     = seq(0, 3, 0.25),
                                         D     = 0.05,
                                         K     =  25.7 * 10^(-3),
                                         nu    =  15.3 * 10^(-6), 
@@ -468,7 +469,7 @@ points(x    = seq(0, 3, 0.25),
        lty  = "longdash")
 
 points(x    = seq(0, 3, 0.25), 
-       y    = heat_transfer_coefficient(V     = seq(0, 3, 0.25),
+       y    = heat_transfer_coefficient(u     = seq(0, 3, 0.25),
                                         D     = 0.05,
                                         K     =  25.7 * 10^(-3),
                                         nu    =  15.3 * 10^(-6), 
@@ -487,7 +488,7 @@ legend(x      = "bottomright",
 par(mar = c(5,  5, 3, 2))
 
 plot(x    = seq(0, 3, 0.25), 
-     y    = heat_transfer_coefficient_approximation(V     = seq(0, 3, 0.25),
+     y    = heat_transfer_coefficient_approximation(u     = seq(0, 3, 0.25),
                                                     D     = 0.05,
                                                     K     =  25.7 * 10^(-3),
                                                     nu    =  15.3 * 10^(-6), 
@@ -497,7 +498,7 @@ plot(x    = seq(0, 3, 0.25),
      ylab = expression("heat transfer coefficient," ~ H[L] ~ (W ~ m^{-2} ~ K^{-1})))
 
 points(x    = seq(0, 3, 0.25), 
-       y    = heat_transfer_coefficient_approximation(V     = seq(0, 3, 0.25),
+       y    = heat_transfer_coefficient_approximation(u     = seq(0, 3, 0.25),
                                                       D     = 0.05,
                                                       K     =  25.7 * 10^(-3),
                                                       nu    =  15.3 * 10^(-6), 
@@ -506,7 +507,7 @@ points(x    = seq(0, 3, 0.25),
        lty  = "dashed")
 
 points(x    = seq(0, 3, 0.25), 
-       y    = heat_transfer_coefficient_approximation(V     = seq(0, 3, 0.25),
+       y    = heat_transfer_coefficient_approximation(u     = seq(0, 3, 0.25),
                                                       D     = 0.05,
                                                       K     =  25.7 * 10^(-3),
                                                       nu    =  15.3 * 10^(-6), 
@@ -515,7 +516,7 @@ points(x    = seq(0, 3, 0.25),
        lty  = "dotted")
 
 points(x    = seq(0, 3, 0.25), 
-       y    = heat_transfer_coefficient_approximation(V     = seq(0, 3, 0.25),
+       y    = heat_transfer_coefficient_approximation(u     = seq(0, 3, 0.25),
                                                       D     = 0.05,
                                                       K     =  25.7 * 10^(-3),
                                                       nu    =  15.3 * 10^(-6), 
@@ -524,7 +525,7 @@ points(x    = seq(0, 3, 0.25),
        lty  = "dotdash")
 
 points(x    = seq(0, 3, 0.25), 
-       y    = heat_transfer_coefficient_approximation(V     = seq(0, 3, 0.25),
+       y    = heat_transfer_coefficient_approximation(u     = seq(0, 3, 0.25),
                                                       D     = 0.05,
                                                       K     =  25.7 * 10^(-3),
                                                       nu    =  15.3 * 10^(-6), 
@@ -541,7 +542,7 @@ legend(x      = "bottomright",
 ## ---- fig.height = 3, fig.width = 5-------------------------------------------
 
 plot(x    = seq(0, 3, 0.25), 
-     y    = heat_transfer_coefficient_simple(V    = seq(0, 3, 0.25),
+     y    = heat_transfer_coefficient_simple(u    = seq(0, 3, 0.25),
                                              D    = 0.05, 
                                              type = "Spotila"), 
      type = "l", 
@@ -549,14 +550,14 @@ plot(x    = seq(0, 3, 0.25),
      ylab = expression("heat transfer coefficient," ~ H[L] ~ (W ~ m^{-2} ~ K^{-1})))
 
 points(x    = seq(0, 3, 0.25), 
-       y    = heat_transfer_coefficient_simple(V    = seq(0, 3, 0.25),
+       y    = heat_transfer_coefficient_simple(u    = seq(0, 3, 0.25),
                                                D    = 0.03, 
                                                type = "Spotila"), 
        type = "l", 
        lty  = "dashed")
 
 points(x    = seq(0, 3, 0.25), 
-       y    = heat_transfer_coefficient_simple(V    = seq(0, 3, 0.25),
+       y    = heat_transfer_coefficient_simple(u    = seq(0, 3, 0.25),
                                                D    = 0.07, 
                                                type = "Spotila"), 
        type = "l", 
@@ -573,37 +574,34 @@ legend(x      = "bottomright",
 plot(x    = 293:313, 
      y    = Qconduction_animal(T_g        = 293:313,
                                T_b        = 303,
-                               d          = 10^-6,
+                               d          = 0.025,
                                K          = 0.3,
                                A          = 10^-3,
                                proportion = 0.2), 
      type = "l", 
-     xlab = "ground temperature (K)", ylab = "Q conductance (W)")
-
+     xlab = "ground temperature (Tb, K)", ylab = "Q conductance (W)")
 points(x    = 293:313, 
        y    = Qconduction_animal(T_g        = 293:313,
                                  T_b        = 303,
-                                 d          = 10^-6,
+                                 d          = 0.025,
                                  K          = 0.5,
                                  A          = 10^-3,
                                  proportion = 0.2), 
        type = "l", 
        lty  = "dashed")
-
 points(x    = 293:313, 
        y    = Qconduction_animal(T_g        = 293:313,
                                  T_b        = 303,
-                                 d          = 10^-6,
+                                 d          = 0.025,
                                  K          = 0.3,
                                  A          = 10^-3,
                                  proportion = 0.4), 
        type = "l", 
        lty  = "dotted")
-
 points(x    = 293:313, 
        y    = Qconduction_animal(T_g        = 293:313,
                                  T_b        = 303,
-                                 d          = 10^-6,
+                                 d          = 0.025,
                                  K          = 0.5,
                                  A          = 10^-3,
                                  proportion = 0.4), 
@@ -626,9 +624,8 @@ plot(x    = 293:313,
                                   A          = 10^-2,
                                   proportion = 0.2), 
      type = "l", 
-     xlab = "ground temperature (K)", 
+     xlab = "ground temperature (Tb, K)", 
      ylab = "Q conductance (W)")
-
 points(x    = 293:313, 
        y    = Qconduction_substrate(T_g        = 293:313,
                                     T_b        = 303,
@@ -638,7 +635,6 @@ points(x    = 293:313,
                                     proportion = 0.2), 
        type = "l", 
        lty  = "dashed")
-
 points(x    = 293:313, 
        y    = Qconduction_substrate(T_g        = 293:313,
                                     T_b        = 303,
@@ -648,7 +644,6 @@ points(x    = 293:313,
                                     proportion = 0.4), 
        type = "l", 
        lty  = "dotted")
-
 points(x    = 293:313, 
        y    = Qconduction_substrate(T_g        = 293:313,
                                     T_b        = 303,
@@ -698,7 +693,7 @@ legend(x      = "topleft",
 
 plot(x    = 1:100, 
      y    = Qmetabolism_from_mass_temp(m     = 1:100, 
-                                       T_b   = 303,
+                                       T_b   = 30,
                                        taxon = "bird"), 
      type = "l", 
      xlab = "mass (g)", 
@@ -707,21 +702,21 @@ plot(x    = 1:100,
 
 points(x    = 1:100, 
        y    = Qmetabolism_from_mass_temp(m     = 1:100, 
-                                         T_b   = 303,
+                                         T_b   = 30,
                                          taxon = "reptile"), 
        type = "l", 
        lty  = "dotted")
 
 points(x    = 1:100, 
        y    = Qmetabolism_from_mass_temp(m     = 1:100, 
-                                         T_b   = 303,
+                                         T_b   = 30,
                                          taxon = "amphibian"), 
        type = "l", 
        lty  = "dotdash")
 
 points(x    = 1:100, 
        y    = Qmetabolism_from_mass_temp(m     = 1:100,
-                                         T_b   = 303,
+                                         T_b   = 30,
                                          taxon = "invertebrate"), 
        type = "l", 
        lty  = "twodash")
@@ -731,32 +726,32 @@ legend(x      = "top",
        legend = c("bird,mammal", "reptile", "amphibian", "invertebrate"), 
        lty    = c("solid", "dotted", "dotdash", "twodash"))
 
-plot(x    = 293:313, 
+plot(x    = 20:40, 
      y    = Qmetabolism_from_mass_temp(m     = 5, 
-                                       T_b   = 293:313,
+                                       T_b   = 20:40,
                                        taxon = "bird"), 
      type = "l", 
-     xlab = "temperature (K)", 
+     xlab = "temperature (C)", 
      ylab = "metabolism (W)", 
      ylim = c(0,0.1))
 
-points(x    = 293:313, 
+points(x    = 20:40, 
        y    = Qmetabolism_from_mass_temp(m     = 5, 
-                                         T_b   = 293:313,
+                                         T_b   = 20:40,
                                          taxon = "reptile"), 
        type = "l", 
        lty  = "dotted")
 
-points(x    = 293:313, 
+points(x    = 20:40, 
        y    = Qmetabolism_from_mass_temp(m     = 5, 
-                                         T_b   = 293:313,
+                                         T_b   = 20:40,
                                          taxon = "amphibian"), 
        type = "l", 
        lty  = "dotdash")
 
-points(x    = 293:313, 
+points(x    = 20:40, 
        y    = Qmetabolism_from_mass_temp(m     = 5, 
-                                         T_b   = 293:313,
+                                         T_b   = 20:40,
                                          taxon = "invertebrate"), 
        type = "l", 
        lty  = "twodash")
@@ -775,7 +770,7 @@ legend(x      = "topleft",
 
 # convert to kg/m^3
 
-  rho_s <- vp * 0.032 
+  e_s <- vp * 0.032 
 
 # kPa
 
@@ -783,7 +778,7 @@ legend(x      = "topleft",
 
 # convert to kg/m^3
 
-  rho_a <-  vp * 0.032 
+  e_a <-  vp * 0.032 
 
 
 temps      <- 293:313
@@ -794,18 +789,18 @@ for (ind in 1:21) {
   Qevaps[ind]     <- Qevaporation(A     = 0.1, 
                                   T_b   = temps[ind],  
                                   taxon = "amphibian",  
-                                  rho_s = rho_s[ind],  
-                                  rho_a = rho_a[ind],  
-                                  h     = 0.5,  
+                                  e_s = e_s[ind],  
+                                  e_a = e_a[ind],  
+                                  hp     = 0.5,  
                                   H     = 20,  
                                   r_i   = 50) 
 
   Qevaps_wet[ind] <- Qevaporation(A     = 0.1,  
                                   T_b   = temps[ind],  
                                   taxon = "amphibian_wetskin",  
-                                  rho_s = rho_s[ind],  
-                                  rho_a = rho_a[ind],  
-                                  h     = 0.5,  
+                                  e_s = e_s[ind],  
+                                  e_a = e_a[ind],  
+                                  hp     = 0.5,  
                                   H     = 20,  
                                   r_i   = 50) 
 }
@@ -845,7 +840,7 @@ par(mar = c(5, 5, 3, 2))
 plot(x    = 10:30, 
      y    = external_resistance_to_water_vapor_transfer(H = 10:30), 
      type = "l", 
-     xlab = expression("heat transfer coefficient" ~ (W ~ m^{-2} ~ "°" ~ C^{-1})), 
+     xlab = expression("heat transfer coefficient" ~ (W ~ m^{-2} ~  K^{-1})), 
      ylab = expression("external resistance, " ~ r[e] ~ (sm^{-1})))
 
 
@@ -860,69 +855,69 @@ plot(x    = 10:30,
 
 ## ---- fig.height = 4, fig.width = 4-------------------------------------------
 
-t.seq <- lapply(293:313, 
+t.seq <- lapply(20:40, 
                 FUN     = Tb_Gates, 
                 A       = 0.1, 
-                D       = 0.001, 
+                D       = 0.025, 
                 psa_dir = 0.6, 
                 psa_ref = 0.4, 
                 psa_air = 0.6, 
                 psa_g   = 0.0, 
-                T_g     = 303, 
+                T_g     = 30, 
                 Qabs    = 10, 
                 epsilon = 0.95, 
                 H_L     = 10, 
                 ef      = 1.3, 
                 K       = 0.5)
 
-plot(x    = 293:313, 
+plot(x    = 20:40, 
      y    = t.seq, 
      type = "l", 
-     xlab = "ambient temperature, Ta (K)", 
-     ylab = "body temperature, Tb (K)", 
-     xlim = c(295, 315), 
-     ylim = c(295, 315))
+     xlab = "ambient temperature, Ta (°C)", 
+     ylab = "body temperature, Tb (°C)", 
+     xlim = c(22, 42), 
+     ylim = c(22, 42))
 
 abline(a   = 0,
        b   = 1, 
        col = "gray")
 
-t.seq <- lapply(293:313, 
+t.seq <- lapply(20:40, 
                 FUN     = Tb_Gates, 
                 A       = 0.1, 
-                D       = 0.001, 
+                D       = 0.025, 
                 psa_dir = 0.6, 
                 psa_ref = 0.4, 
                 psa_air = 0.6, 
                 psa_g   = 0.0, 
-                T_g     = 303, 
+                T_g     = 30, 
                 Qabs    = 0, 
                 epsilon = 0.95, 
                 H_L     = 10, 
                 ef      = 1.3, 
                 K       = 0.5)
 
-points(x    = 293:313, 
+points(x    = 20:40, 
        y    = t.seq, 
        type = "l", 
        lty  = "dashed")
 
-t.seq <- lapply(293:313, 
+t.seq <- lapply(20:40, 
                 FUN     = Tb_Gates, 
                 A       = 0.1, 
-                D       = 0.001, 
+                D       = 0.025, 
                 psa_dir = 0.6, 
                 psa_ref = 0.4, 
                 psa_air = 0.6, 
                 psa_g   = 0.0, 
-                T_g     = 303, 
+                T_g     = 30, 
                 Qabs    = 20, 
                 epsilon = 0.95, 
                 H_L     = 10, 
                 ef      = 1.3, 
                 K       = 0.5)
 
-points(x    = 293:313, 
+points(x    = 20:40, 
        y    = t.seq, 
        type = "l", 
        lty  = "dotted")
@@ -935,49 +930,49 @@ legend(x      = "bottomright",
 
 ## ---- fig.height = 4, fig.width = 4-------------------------------------------
 
-plot(x    = 293:313, 
-     y    = Tb_CampbellNorman(T_a     = 293:313, 
-                              T_g     = 303, 
+plot(x    = 20:40, 
+     y    = Tb_CampbellNorman(T_a     = 20:40, 
+                              T_g     = 30, 
                               S       = 600, 
-                              alpha_S = 0.7, 
-                              alpha_L = 0.96, 
+                              a_s     = 0.7, 
+                              a_l     = 0.96, 
                               epsilon = 0.96, 
                               c_p     = 29.3, 
                               D       = 0.17, 
-                              V       = 1), 
+                              u       = 1), 
      type = "l", 
-     xlab = "air temperature (K)", 
-     ylab = "body temperature (K)", 
-     xlim = c(295,310), 
-     ylim = c(290,340))
+     xlab = "air temperature (C)", 
+     ylab = "body temperature (C)", 
+     xlim = c(23,37), 
+     ylim = c(17,67))
 
 abline(a   = 0, 
        b   = 1, 
        col = "gray")
 
-points(x    = 293:313, 
-       y    = Tb_CampbellNorman(T_a     = 293:313,
-                                T_g     = 303, 
+points(x    = 20:40, 
+       y    = Tb_CampbellNorman(T_a     = 20:40,
+                                T_g     = 30, 
                                 S       = 200, 
-                                alpha_S = 0.7, 
-                                alpha_L = 0.96, 
+                                a_s     = 0.7, 
+                                a_l     = 0.96, 
                                 epsilon = 0.96, 
                                 c_p     = 29.3, 
                                 D       = 0.17, 
-                                V       = 1), 
+                                u       = 1), 
        type = "l", 
        lty  = "dashed")
 
-points(x    = 293:313, 
-       y    = Tb_CampbellNorman(T_a     = 293:313, 
-                                T_g     = 303, 
+points(x    = 20:40, 
+       y    = Tb_CampbellNorman(T_a     = 20:40, 
+                                T_g     = 30, 
                                 S       = 400, 
-                                alpha_S = 0.7, 
-                                alpha_L = 0.96, 
+                                a_s     = 0.7, 
+                                a_l     = 0.96, 
                                 epsilon = 0.96, 
                                 c_p     = 29.3, 
                                 D       = 0.17, 
-                                V       = 1), 
+                                u       = 1), 
        type = "l", 
        lty  = "dotted")
 
@@ -998,13 +993,13 @@ legend(x      = "bottomright",
                   svl       = 60, 
                   m         = 10, 
                   psi       = 34, 
-                  rho_S     = 0.7, 
+                  rho_s     = 0.7, 
                   elev      = 500, 
                   doy       = 200, 
                   sun       = TRUE, 
                   surface   = TRUE, 
-                  alpha_S   = 0.9, 
-                  alpha_L   = 0.965, 
+                  a_s       = 0.9, 
+                  a_l       = 0.965, 
                   epsilon_s = 0.965, 
                   F_d       = 0.8, 
                   F_r       = 0.5, 
@@ -1031,13 +1026,13 @@ legend(x      = "bottomright",
                   svl       = 60, 
                   m         = 10, 
                   psi       = 34, 
-                  rho_S     = 0.7, 
+                  rho_s     = 0.7, 
                   elev      = 500, 
                   doy       = 200, 
                   sun       = FALSE, 
                   surface   = TRUE, 
-                  alpha_S   = 0.9, 
-                  alpha_L   = 0.965,
+                  a_s       = 0.9, 
+                  a_l       = 0.965,
                   epsilon_s = 0.965, 
                   F_d       = 0.8, 
                   F_r       = 0.5, 
@@ -1058,13 +1053,13 @@ legend(x      = "bottomright",
                   svl       = 60, 
                   m         = 10, 
                   psi       = 34, 
-                  rho_S     = 0.7, 
+                  rho_s     = 0.7, 
                   elev      = 500, 
                   doy       = 200, 
                   sun       = TRUE, 
                   surface   = FALSE, 
-                  alpha_S   = 0.9, 
-                  alpha_L   = 0.965, 
+                  a_s       = 0.9, 
+                  a_l       = 0.965, 
                   epsilon_s = 0.965, 
                   F_d       = 0.8, 
                   F_r       = 0.5, 
@@ -1085,13 +1080,13 @@ legend(x      = "bottomright",
                   svl       = 60, 
                   m         = 10, 
                   psi       = 34, 
-                  rho_S     = 0.7, 
+                  rho_s     = 0.7, 
                   elev      = 500, 
                   doy       = 200, 
                   sun       = FALSE, 
                   surface   = FALSE, 
-                  alpha_S   = 0.9, 
-                  alpha_L   = 0.965, 
+                  a_s       = 0.9, 
+                  a_l       = 0.965, 
                   epsilon_s = 0.965, 
                   F_d       = 0.8, 
                   F_r       = 0.5, 
@@ -1110,17 +1105,17 @@ legend(x      = "topright",
 
 ## ---- fig.height = 4, fig.width = 4-------------------------------------------
 
-t.seq <- lapply(293:313, 
+t.seq <- lapply(20:40, 
                 FUN       = Tb_lizard_Fei,  
-                T_g       = 300,  
-                H         = 800,  
+                T_g       = 27,  
+                S         = 800,  
                 lw        = 30,  
                 shade     = 0.5,  
                 m         = 10.5,  
                 Acondfact = 0.05,  
                 Agradfact = 0.4)
 
-plot(x    = 293:313, 
+plot(x    = 20:40, 
      y    = t.seq, 
      type = "l", 
      xlab = "ambient temperature (°C)", 
@@ -1130,32 +1125,32 @@ abline(a   = 0,
        b   = 1, 
        col = "gray")
 
-t.seq <- lapply(293:313,  
+t.seq <- lapply(20:40,  
                 FUN       = Tb_lizard_Fei,  
-                T_g       = 300,  
-                H         = 800,  
+                T_g       = 27,  
+                S         = 800,  
                 lw        = 30,  
                 shade     = 0.0,  
                 m         = 10.5,  
                 Acondfact = 0.05,  
                 Agradfact = 0.4)
 
-points(x    = 293:313, 
+points(x    = 20:40, 
        y    = t.seq, 
        type = "l", 
        lty  = "dashed")
 
-t.seq <- lapply(293:313,  
+t.seq <- lapply(20:40,  
                 FUN       = Tb_lizard_Fei,  
-                T_g       = 300,  
-                H         = 800,  
+                T_g       = 27,  
+                S         = 800,  
                 lw        = 30,  
                 shade     = 1.0,  
                 m         = 10.5,  
                 Acondfact = 0.05,  
                 Agradfact = 0.4)
 
-points(x    = 293:313, 
+points(x    = 20:40, 
        y    = t.seq, 
        type = "l", 
        lty  = "dotted")
@@ -1173,8 +1168,8 @@ t.seq <- lapply(20:40,
                 T_g    = 25,  
                 T_sh   = 20,  
                 u      = 0.4,  
-                H_sdir = 300,  
-                H_sdif = 100,  
+                S_sdir = 300,  
+                S_sdif = 100,  
                 z      = 30,  
                 D      = 0.36,  
                 delta  = 1.46,  
@@ -1196,8 +1191,8 @@ t.seq <- lapply(20:40,
                 T_g    = 25,  
                 T_sh   = 20,  
                 u      = 0.4,  
-                H_sdir = 100,  
-                H_sdif = 100,  
+                S_sdir = 100,  
+                S_sdif = 100,  
                 z      = 30,  
                 D      = 0.36,  
                 delta  = 1.46,  
@@ -1214,8 +1209,8 @@ t.seq <- lapply(20:40,
                 T_g    = 25,  
                 T_sh   = 20,  
                 u      = 0.4,  
-                H_sdir = 500,  
-                H_sdif = 100,  
+                S_sdir = 500,  
+                S_sdif = 100,  
                 z      = 30,  
                 D      = 0.36,  
                 delta  = 1.46,  
@@ -1228,7 +1223,7 @@ points(x    = 20:40,
        lty  = "dotted")
 
 legend(x      = "bottomright",
-       title= expression("direct radiation," ~ H[sdif]), 
+       title= expression("direct radiation," ~ S[sdif]), 
        legend = c(100,300,500), 
        lty    = c("dashed", "solid", "dotted"))
 
@@ -1239,7 +1234,7 @@ t.seq <- lapply(20:40,
                 FUN       = Tb_grasshopper,  
                 T_g       = 25,  
                 u         = 0.4,  
-                H         = 800,  
+                S         = 800,  
                 K_t       = 0.7,  
                 psi       = 30,  
                 l         = 0.05,  
@@ -1264,7 +1259,7 @@ t.seq <- lapply(20:40,
                 FUN       = Tb_grasshopper,  
                 T_g       = 25,  
                 u         = 0.4,  
-                H         = 400,  
+                S         = 400,  
                 K_t       = 0.7,  
                 psi       = 30,  
                 l         = 0.05,  
@@ -1282,7 +1277,7 @@ t.seq <- lapply(20:40,
                 FUN       = Tb_grasshopper,  
                 T_g       = 25,  
                 u         = 0.4,  
-                H         = 600,  
+                S         = 600,  
                 K_t       = 0.7,  
                 psi       = 30,  
                 l         = 0.05,  
@@ -1297,7 +1292,7 @@ points(x    = 20:40,
        lty  = "dotted")
 
 legend(x      = "bottomright",
-       title  = expression("direct radiation, H"), 
+       title  = expression("direct radiation, S"), 
        legend = c(200, 400, 600), 
        lty    = c("dashed", "dotted", "solid"))
 
@@ -1525,7 +1520,7 @@ t.seq <- lapply(20:40,
                 T_r      = 30,  
                 l        = 0.0176,  
                 h        = 0.0122,  
-                I        = 1000,  
+                S        = 1000,  
                 u        = 1,  
                 psi      = 30,  
                 c        = 1,  
@@ -1543,7 +1538,7 @@ t.seq <- lapply(20:40,
                 T_r      = 30,  
                 l        = 0.0176,  
                 h        = 0.0122,  
-                I        = 1300,  
+                S        = 1300,  
                 u        = 1,  
                 psi      = 30,  
                 c        = 1,  
@@ -1559,7 +1554,7 @@ t.seq <- lapply(20:40,
                 T_r      = 30,  
                 l        = 0.0176,  
                 h        = 0.0122,  
-                I        = 1600,  
+                S        = 1600,  
                 u        = 1,  
                 psi      = 30,  
                 c        = 1,  
@@ -1587,7 +1582,7 @@ t.seq <- lapply(20:40,
                 T_r      = 30,  
                 l        = 0.0176,  
                 h        = 0.0122,  
-                I        = 800,  
+                S        = 800,  
                 u        = 1,  
                 psi      = 30,  
                 c        = 1,  
@@ -1605,7 +1600,7 @@ t.seq <- lapply(20:40,
                 T_r      = 30,  
                 l        = 0.0176,  
                 h        = 0.0122,  
-                I        = 800,  
+                S        = 800,  
                 u        = 1,  
                 s_aspect = 90,  
                 s_slope  = 60,
@@ -1619,8 +1614,8 @@ points(x    = 20:40,
 t.seq <- lapply(20:40,  
                 FUN   = Tb_snail,  
                 l     = 0.012,  
-                solar = 800,  
-                WS    = 1,  
+                S = 800,  
+                u    = 1,  
                 CC    = 0.5,  
                 WL    = 0,  
                 WSH   = 10)
@@ -1753,7 +1748,7 @@ abline(a    = 0,
          col  = "blue")
 
 legend(x      = "topleft",
-       title  = "", 
+       title  = NULL, 
        legend = c("base scenario", "higher skin resistance", "higher vpd"), 
        lty    = c("solid"), 
        col    = c("black", "red", "blue"))
@@ -1777,7 +1772,7 @@ legend(x      = "topleft",
 
 # wind speed (m/s)
 
-  V <- 0.5 
+  u <- 0.5 
 
 # assumptions
 #  atmospheric transmissivity and albedo
@@ -1807,7 +1802,7 @@ legend(x      = "topleft",
 
 ## ---- fig.height = 4, fig.width = 6-------------------------------------------
 
-psi_deg <- sapply(1:24, 
+psi_deg <- sapply(0:23, 
                   FUN = zenith_angle, 
                   doy = doy, 
                   lat = lat, 
@@ -1828,19 +1823,19 @@ Srad <- sapply(psi_rad,
   Sdif <- Srad[2,]
   Sref <- Srad[3,]
  
-plot(x    = 1:24, 
+plot(x    = 0:23, 
      y    = Sdir, 
      type = "l", 
      xlab = "hour", 
      ylab = expression(radiation ~ (W/m^{2})), 
      ylim = c(0,1200))
 
-points(x    = 1:24, 
+points(x    = 0:23, 
        y    = Sdif, 
        type = "l", 
        lty  = "dotted")
 
-points(x    = 1:24, 
+points(x    = 0:23, 
        y    = Sref, 
        type = "l", 
        lty  = "dashed")
@@ -1853,7 +1848,7 @@ legend(x      = "topright",
 
 ## -----------------------------------------------------------------------------
 
-Ta <- sapply(1:24, 
+Ta <- sapply(0:23, 
              FUN   = diurnal_temp_variation_sineexp, 
              T_max = Tmax,  
              T_min = Tmin,  
@@ -1863,7 +1858,7 @@ Ta <- sapply(1:24,
              beta  = 1.55,  
              gamma = 2.2) #air temperature (C)
 
-Ts <- sapply(1:24,  
+Ts <- sapply(0:23,  
              FUN   = diurnal_temp_variation_sine,  
              T_max = Tmax_s,  
              T_min = Tmin_s) #soil temperature (C)
@@ -1871,7 +1866,7 @@ Ts <- sapply(1:24,
 
 ## -----------------------------------------------------------------------------
 
-mass <- 10 
+mass <- 10 #grams
 
 # solar absorptivity
  
@@ -1893,9 +1888,13 @@ mass <- 10
 
   psa[psa < 0] <- 0
 
+# proportion of surface area in contact with ground, assume 0.25   
+
+  psa_g= 0.25  
+
 # Total radiation 
 
-  Qabs <- psa * Sdir + 0.5 * Sdif + 0.5 * Sref
+  Qabs <- psa * Sdir + 0.5 * Sdif + (0.5-psa_g) * Sref
  
 
 ## -----------------------------------------------------------------------------
@@ -1921,6 +1920,10 @@ mass <- 10
 
     svl <- 0.006 
 
+  # approximate characteristic dimension as cube root of volume, assuming density of water as 1000kg/m^3
+    
+    D <- ((mass / 1000) / 1000) ^ (1 / 3)
+    
   # We will use the average of K and nu across the day for simplicity and since there's not a substantial variation
 
     K  <-  mean(K)
@@ -1928,22 +1931,22 @@ mass <- 10
 
   # Estimate the heat transfer coefficient using an empirical relationship for lizards
 
-    H_L <- heat_transfer_coefficient(V     = V,
-                                     D     = svl,
+    H_L <- heat_transfer_coefficient(u     = u,
+                                     D     = D,
                                      K     = 25.7 * 10^(-3), 
                                      nu    = 15.3 * 10^(-6), 
                                      taxon = "lizard_surface")
 
   # Also illustrate estimations using a spherical approximation and a simplified version of the approximation.
 
-    heat_transfer_coefficient_approximation(V     = V,
-                                            D     = svl,
+    heat_transfer_coefficient_approximation(u     = u,
+                                            D     = D,
                                             K     =  25.7 * 10^(-3), 
                                             nu    = 15.3 * 10^(-6), 
                                             taxon = "lizard")
 
-    heat_transfer_coefficient_simple(V    = 0.5,
-                                     D    = 0.05, 
+    heat_transfer_coefficient_simple(u    = 0.5,
+                                     D    = D, 
                                      type = "Spotila")
 
 
@@ -1955,13 +1958,13 @@ TeGates <- rep(NA, 24)
 
 for (hr in 1:24) {
   TeGates[hr] <- Tb_Gates(A       = A, 
-                          D       = svl / 3, 
+                          D       = D, 
                           psa_dir = psa[hr], 
-                          psa_ref = 0.5, 
+                          psa_ref = 0.5 -psa_g, 
                           psa_air = 0.5, 
-                          psa_g   = 0.05, 
-                          T_g     = Ts[hr] + 273, 
-                          T_a     = Ta[hr] + 273, 
+                          psa_g   = psa_g, 
+                          T_g     = Ts[hr], 
+                          T_a     = Ta[hr], 
                           Qabs    = Qabs[hr]*A, 
                           epsilon = epsilon_s, 
                           H_L     = H_L, 
@@ -1975,14 +1978,14 @@ for (hr in 1:24) {
 TeCN <- rep(NA, 24)
 
 for (hr in 1:24) {
-  TeCN[hr] <- Tb_CampbellNorman(T_a     = Ta[hr] + 273.15, 
-                                T_g     = Ts[hr] + 273.15, 
+  TeCN[hr] <- Tb_CampbellNorman(T_a     = Ta[hr], 
+                                T_g     = Ts[hr], 
                                 S       = Qabs[hr], 
-                                alpha_L = 0.96, 
+                                a_l     = 0.96, 
                                 epsilon = epsilon_s, 
                                 c_p     = 29.3, 
-                                D       = svl, 
-                                V       = V)
+                                D       = D, 
+                                u       = u)
 }
 
 #S is solar radiation flux (W m^-2), so we divide by surface area, A
@@ -1995,17 +1998,17 @@ TeLiz <- rep(NA, 24)
 for (hr in 1:24) {
   TeLiz[hr] <- Tb_lizard(T_a       = Ta[hr], 
                          T_g       = Ts[hr], 
-                         u         = V, 
+                         u         = u, 
                          svl       = svl * 1000, 
                          m         = mass, 
                          psi       = psi_deg[hr], 
-                         rho_S     = rho, 
+                         rho_s     = rho, 
                          elev      = elev, 
                          doy       = doy, 
                          sun       = TRUE, 
                          surface   = TRUE, 
-                         alpha_S   = a, 
-                         alpha_L   = 0.965, 
+                         a_s       = a, 
+                         a_l       = 0.965, 
                          epsilon_s = epsilon_s, 
                          F_d       = 0.8, 
                          F_r       = 0.5, 
@@ -2016,9 +2019,9 @@ for (hr in 1:24) {
 TeFei <- rep(NA, 24)
 
 for (hr in 1:24) {
-  TeFei[hr] <- Tb_lizard_Fei(T_a       = Ta[hr] + 273, 
-                             T_g       = Ts[hr] + 273, 
-                             H         = Qabs[hr], 
+  TeFei[hr] <- Tb_lizard_Fei(T_a       = Ta[hr], 
+                             T_g       = Ts[hr], 
+                             S         = Qabs[hr], 
                              lw        = 30, 
                              shade     = 0.0, 
                              m         = 10.5,
@@ -2036,17 +2039,17 @@ par(mar = c(4, 4, 1, 4),
 # Gates
 
   plot(x    = 1:24, 
-       y    = TeGates - 273, 
+       y    = TeGates, 
        type = "l", 
        xlab = "Hour", 
        ylab = "Temperature (°C)", 
        col = "blue", 
-       ylim = c(10,38)) 
+       ylim = c(10,50)) 
 
 # Campbell
 
   points(x    = 1:24,  
-         y    = TeCN -273, 
+         y    = TeCN, 
          type = "l", 
          col  = "blue", 
          lty  = "dotted") 
@@ -2062,7 +2065,7 @@ par(mar = c(4, 4, 1, 4),
 # Fei et al.
 
   points(x    = 1:24,  
-         y    = TeFei - 273, 
+         y    = TeFei, 
          type = "l", 
          col  = "blue", 
          lty  = "dotdash") 
@@ -2111,11 +2114,12 @@ Qabs <- rep(NA, 24)
 for (hr in 1:24) {
   Qabs[hr] <- Qradiation_absorbed(a       = a, 
                                   A       = A, 
-                                  psa_dir = psa[hr], 
-                                  psa_ref = 1-psa[hr], 
+                                  psa_dir = psa[hr],
+                                  psa_dif = 0.5,
+                                  psa_ref = 0.5-psa_g, 
                                   S_dir   = Sdir[hr], 
                                   S_dif   = Sdif[hr], 
-                                  a_s     = rho)
+                                  rho     = rho)
 }
 
 
@@ -2123,15 +2127,15 @@ for (hr in 1:24) {
 
 # Use Gates model as Te estimate
 
-  Te <- TeGates - 273
+  Te <- TeGates
 
 Qemit <- rep(NA, 24)
 
 for (hr in 1:24) {
   Qemit[hr] <- Qemitted_thermal_radiation(epsilon  = epsilon_s, 
                                           A        = A, 
-                                          psa_dir  = psa[hr], 
-                                          psa_ref  = 1-psa[hr], 
+                                          psa_dir  = 0.5, 
+                                          psa_ref  = 0.5-psa_g, 
                                           T_b      = Te[hr] + 273, 
                                           T_g      = Ts[hr] + 273, 
                                           T_a      = Ta[hr] + 273, 
@@ -2144,8 +2148,8 @@ for (hr in 1:24) {
 Qconv <- rep(NA, 24)
 
 for (hr in 1:24) {
-  Qconv[hr] <- Qconvection(T_a        = Ta[hr] + 273,
-                           T_b        = Te[hr] + 273,
+  Qconv[hr] <- Qconvection(T_a        = Ta[hr] + 273.15,
+                           T_b        = Te[hr] + 273.15,
                            H          = H_L,
                            A          = A, 
                            proportion = 0.67, 
@@ -2160,10 +2164,10 @@ Qcond <- rep(NA, 24)
 for (hr in 1:24) {
   Qcond[hr] <- Qconduction_animal(T_g        = Ts[hr] + 273,
                                   T_b        = Te[hr] + 273,
-                                  d          = svl / 3,
+                                  d          = 0.025, #assume for conductive heat exchange occurs down to 2.5cm
                                   K          = 0.5,
                                   A          = A, 
-                                  proportion = 0.05)
+                                  proportion = psa_g)
 }
 
 
@@ -2216,6 +2220,9 @@ legend(x      = "topright",
        legend = c("net radition, Qnet", "solar radiation, Qabs", "thermal radiation, Qemit", "convection, Qconv", "conduction, Qcond"), 
        lty    = c("solid", "dotted", "dashed", "dotdash", "twodash"))
 
-par(oldpar)
+
+## ----include=FALSE------------------------------------------------------------
+
+suppressWarnings(par(oldpar))
 
 
